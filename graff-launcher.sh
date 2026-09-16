@@ -18,7 +18,7 @@ ROUTER
 SHIM_DIR="$(cd "$(dirname "$0")" && pwd)"
 export SHIM_SESSION_ID="${SHIM_SESSION_ID:-$(cat /proc/sys/kernel/random/uuid 2>/dev/null || python3 -c 'import uuid; print(uuid.uuid4())')}"
 export SHIM_PORT="${SHIM_PORT:-18923}"
-python3 "$SHIM_DIR/opencode_shim.py" "$SHIM_PORT" &
+python3 "$SHIM_DIR/opencode_shim.py" "$SHIM_PORT" >/dev/null 2>&1 &
 SHIM_PID=$!
 
 # Wait for shim to be ready
